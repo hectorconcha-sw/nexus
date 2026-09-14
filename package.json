@@ -1,0 +1,43 @@
+{
+  "name": "nexus",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Production-grade, event-driven ecommerce platform",
+  "author": "Hector Concha <hectorconcha_sw@outlook.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hectorconcha-sw/nexus.git"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=12.0.0"
+  },
+  "packageManager": "pnpm@12.4.1",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.4.1",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "prepare": "husky",
+    "lint": "echo 'TODO: eslint'",
+    "typecheck": "echo 'TODO: tsc --noEmit'",
+    "test": "echo 'TODO: vitest'",
+    "format": "echo 'TODO: prettier --write .'",
+    "format:check": "echo 'TODO: prettier --check .'"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": ["eslint --fix", "prettier --write"],
+    "*.{json,md,yml,yaml}": ["prettier --write"]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.1"
+  }
+}
