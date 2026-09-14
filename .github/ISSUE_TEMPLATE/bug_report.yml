@@ -1,0 +1,45 @@
+name: Bug Report
+description: Report a defect in Nexus
+title: 'bug: '
+labels: ['bug', 'needs-triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug.
+        Please fill in as much detail as you can.
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to ...
+        2. Click ...
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs, trace IDs, or screenshots
+      render: shell
+    validations:
+      required: false
