@@ -1,0 +1,42 @@
+name: Feature Request
+description: Suggest an idea for Nexus
+title: 'feat: '
+labels: ['enhancement', 'needs-triage']
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What problem does this feature solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - Service: auth
+        - Service: catalog
+        - Service: cart
+        - Service: orders
+        - Service: payments
+        - Service: inventory
+        - Service: notifications
+        - Service: analytics
+        - Infrastructure
+        - Documentation
+        - Other
+    validations:
+      required: true

@@ -24,20 +24,31 @@
   "type": "module",
   "scripts": {
     "prepare": "husky",
-    "lint": "echo 'TODO: eslint'",
-    "typecheck": "echo 'TODO: tsc --noEmit'",
-    "test": "echo 'TODO: vitest'",
-    "format": "echo 'TODO: prettier --write .'",
-    "format:check": "echo 'TODO: prettier --check .'"
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "echo 'TODO: wire up vitest in each service'"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx}": ["eslint --fix", "prettier --write"],
-    "*.{json,md,yml,yaml}": ["prettier --write"]
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.2",
     "@commitlint/config-conventional": "^21.2.2",
+    "@eslint/js": "^10.0.1",
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "eslint": "^10.10.0",
     "husky": "^9.1.7",
-    "lint-staged": "^17.5.1"
+    "lint-staged": "^17.5.1",
+    "prettier": "^3.9.6",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript-eslint": "^8.70.0"
   }
 }

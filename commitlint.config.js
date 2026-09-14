@@ -5,10 +5,23 @@ export default {
       2,
       'always',
       [
-        'auth', 'catalog', 'cart', 'orders', 'payments', 'inventory',
-        'notifications', 'analytics', 'gateway', 'web', 'admin',
-        'infra', 'ci', 'deps', 'docs', 'repo'
-      ]
-    ]
-  }
+        'auth',
+        'catalog',
+        'cart',
+        'orders',
+        'payments',
+        'inventory',
+        'notifications',
+        'analytics',
+        'gateway',
+        'web',
+        'admin',
+        'infra',
+        'ci',
+        'deps',
+        'docs',
+        'repo',
+      ],
+    ],
+  },
 };

@@ -1,0 +1,17 @@
+# Default owner
+* @hectorconcha-sw
+
+# Domain-specific ownership
+/services/auth/           @hectorconcha-sw
+/services/catalog/        @hectorconcha-sw
+/services/cart/           @hectorconcha-sw
+/services/orders/         @hectorconcha-sw
+/services/payments/       @hectorconcha-sw
+/services/inventory/      @hectorconcha-sw
+/services/notifications/  @hectorconcha-sw
+/services/analytics/      @hectorconcha-sw
+/apps/web/                @hectorconcha-sw
+/apps/admin/              @hectorconcha-sw
+/infra/                   @hectorconcha-sw
+/docs/                    @hectorconcha-sw
+/.github/                 @hectorconcha-sw
