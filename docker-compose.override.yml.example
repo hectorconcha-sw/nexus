@@ -1,0 +1,12 @@
+# Copy this file to docker-compose.override.yml to override settings locally.
+# It is gitignored, so your overrides won't be committed.
+
+services:
+  postgres:
+    environment:
+      POSTGRES_PASSWORD: local_override_password
+  redis:
+    command:
+      - redis-server
+      - --requirepass
+      - local_override_password
