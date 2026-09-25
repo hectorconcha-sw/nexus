@@ -19,6 +19,8 @@ export default {
         'infra',
         'ci',
         'deps',
+        'deps-dev',
+        'deps-prod',
         'docs',
         'repo',
       ],
