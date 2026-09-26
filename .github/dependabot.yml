@@ -1,34 +1,80 @@
 version: 2
 updates:
+  # ─────────────────────────────────────────────────────────────
+  # npm dependencies
+  # ─────────────────────────────────────────────────────────────
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
       day: monday
-    open-pull-requests-limit: 10
+      time: '06:00'
+      timezone: America/Lima
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'chore(deps)'
     groups:
       dev-dependencies:
         dependency-type: development
+        update-types:
+          - minor
+          - patch
       production-dependencies:
         dependency-type: production
-    commit-message:
-      prefix: chore
-      include: scope
+        update-types:
+          - minor
+          - patch
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
 
+  # ─────────────────────────────────────────────────────────────
+  # GitHub Actions — all bumps in one PR
+  # ─────────────────────────────────────────────────────────────
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
       day: monday
+      time: '06:00'
+      timezone: America/Lima
+    open-pull-requests-limit: 3
     commit-message:
-      prefix: chore
-      include: scope
+      prefix: 'chore(deps)'
+    groups:
+      github-actions:
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
 
+  # ─────────────────────────────────────────────────────────────
+  # Docker images referenced in docker-compose.yml / Dockerfiles
+  # ─────────────────────────────────────────────────────────────
   - package-ecosystem: docker
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
       day: monday
+      time: '06:00'
+      timezone: America/Lima
+    open-pull-requests-limit: 3
     commit-message:
-      prefix: chore
-      include: scope
+      prefix: 'chore(deps)'
+    groups:
+      docker-images:
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
