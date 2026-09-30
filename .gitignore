@@ -97,3 +97,7 @@ yarn-error.log*
 
 # Docker Compose local overrides
 docker-compose.override.yml
+
+
+# Generated Prisma client
+services/auth/src/generated/

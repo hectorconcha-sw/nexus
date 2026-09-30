@@ -47,6 +47,26 @@ services:
     networks:
       - nexus
 
+  auth:
+    build:
+      context: .
+      dockerfile: services/auth/Dockerfile
+    container_name: nexus-auth
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://auth_service:auth_dev_password@postgres:5432/nexus_auth
+      JWT_SECRET: ${JWT_SECRET:-dev-only-secret-change-in-production-min-32-chars}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-15m}
+      PORT: 4001
+      NODE_ENV: production
+    ports:
+      - '${AUTH_PORT:-4001}:4001'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - nexus
+
   adminer:
     image: adminer:4-standalone
     container_name: nexus-adminer
