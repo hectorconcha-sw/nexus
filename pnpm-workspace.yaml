@@ -1,0 +1,9 @@
+packages:
+  - 'services/*'
+  - 'packages/*'
+  - 'apps/*'
+
+allowBuilds:
+  '@prisma/client': true
+  '@prisma/engines': true
+  prisma: true

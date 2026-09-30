@@ -1,0 +1,42 @@
+# Dependencies — reinstalled inside the image
+**/node_modules
+**/.pnpm-store
+
+# Build artifacts — regenerated inside the image
+**/dist
+**/build
+**/.next
+**/.turbo
+**/coverage
+
+# Generated code — regenerated inside the image
+**/src/generated
+
+# Environment and secrets — never in an image
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.key
+infra/secrets
+
+# Version control and IDE
+.git
+.gitignore
+.gitattributes
+.vscode
+.idea
+*.swp
+
+# Documentation and CI — not needed in the image
+docs
+.github
+*.md
+
+# Local Docker
+docker-compose.override.yml
+
+# Logs
+**/*.log
+**/npm-debug.log*
+**/pnpm-debug.log*

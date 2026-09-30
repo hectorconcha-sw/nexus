@@ -31,8 +31,12 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @nexus/auth exec prisma generate
+        env:
+          DATABASE_URL: postgres://dummy:dummy@localhost:5432/dummy
       - run: pnpm format:check
       - run: pnpm lint
+      - run: pnpm typecheck
       
 
   test:
@@ -48,4 +52,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @nexus/auth exec prisma generate
+        env:
+          DATABASE_URL: postgres://dummy:dummy@localhost:5432/dummy
       - run: pnpm test
