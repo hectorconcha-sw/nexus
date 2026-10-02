@@ -59,6 +59,8 @@ services:
       JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-15m}
       PORT: 4001
       NODE_ENV: production
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_SERVICE_NAME: nexus-auth
     ports:
       - '${AUTH_PORT:-4001}:4001'
     depends_on:
