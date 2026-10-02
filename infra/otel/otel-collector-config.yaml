@@ -1,0 +1,50 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  batch:
+    timeout: 1s
+    send_batch_size: 1024
+
+exporters:
+  # Export traces to Tempo
+  otlp/tempo:
+    endpoint: tempo:4317
+    tls:
+      insecure: true
+
+  # Export metrics to Prometheus (using the Collector's Prometheus exporter)
+  prometheus:
+    endpoint: '0.0.0.0:8889'
+    namespace: 'nexus'
+    const_labels:
+      service: 'auth'
+
+  # Export logs to Loki
+  loki:
+    endpoint: http://loki:3100/loki/api/v1/push
+
+  # Debug exporter — prints telemetry to the collector's stdout
+  # (replaces the deprecated `logging` exporter)
+  debug:
+    verbosity: detailed
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp/tempo, debug]
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [prometheus, debug]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [loki, debug]

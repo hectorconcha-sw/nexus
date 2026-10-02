@@ -33,11 +33,14 @@ RUN apk add --no-cache curl tini \
 
 ENV NODE_ENV=production
 ENV PORT=4001
+ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318
+ENV OTEL_SERVICE_NAME=nexus-auth
 
 WORKDIR /repo
 COPY --from=build --chown=app:app /repo /repo
 COPY --from=build --chown=app:app /repo/services/auth/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+RUN sed -i 's/\r$//' /usr/local/bin/docker-entrypoint.sh \
+ && chmod +x /usr/local/bin/docker-entrypoint.sh
 
 WORKDIR /repo/services/auth
 USER app
