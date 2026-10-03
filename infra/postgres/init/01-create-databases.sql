@@ -30,7 +30,7 @@ CREATE DATABASE nexus_inventory    OWNER inventory_service;
 CREATE DATABASE nexus_notifications OWNER notifications_service;
 CREATE DATABASE nexus_analytics    OWNER analytics_service;
 -- Shadow database for Prisma Migrate (per service)
-CREATE DATABASE nexus_auth_shadow OWNER auth_service;
+
 
 
 -- Revoke default CONNECT privileges so services cannot reach each other's
@@ -44,4 +44,9 @@ REVOKE CONNECT ON DATABASE nexus_inventory    FROM PUBLIC;
 REVOKE CONNECT ON DATABASE nexus_notifications FROM PUBLIC;
 REVOKE CONNECT ON DATABASE nexus_analytics    FROM PUBLIC;
 
+
+CREATE DATABASE nexus_auth_shadow OWNER auth_service;
 REVOKE CONNECT ON DATABASE nexus_auth_shadow FROM PUBLIC;
+
+CREATE DATABASE nexus_catalog_shadow OWNER catalog_service;
+REVOKE CONNECT ON DATABASE nexus_catalog_shadow FROM PUBLIC;

@@ -69,6 +69,25 @@ services:
     networks:
       - nexus
 
+  catalog:
+    build:
+      context: .
+      dockerfile: services/catalog/Dockerfile
+    container_name: nexus-catalog
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://catalog_service:catalog_dev_password@postgres:5432/nexus_catalog
+      PORT: 4002
+      NODE_ENV: production
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_SERVICE_NAME: nexus-catalog
+    ports:
+      - '${CATALOG_PORT:-4002}:4002'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - nexus
   adminer:
     image: adminer:4-standalone
     container_name: nexus-adminer
