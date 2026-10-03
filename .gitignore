@@ -100,4 +100,4 @@ docker-compose.override.yml
 
 
 # Generated Prisma client
-services/auth/src/generated/
+services/*/src/generated/
