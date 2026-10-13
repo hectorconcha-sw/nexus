@@ -16,19 +16,19 @@ First run builds the auth and catalog images (~3 minutes). Subsequent runs start
 
 ### Running services
 
-| Service | URL | Credentials |
-|---|---|---|
-| **Kong API Gateway** | http://localhost:8000 | — |
-| Kong Admin API | http://localhost:8100 | — |
-| Auth API (direct) | http://localhost:4001 | — |
-| Catalog API (direct) | http://localhost:4002 | — |
-| Postgres | `localhost:5432` | `nexus` / `nexus_dev_password` |
-| Redis | `localhost:6379` | password: `nexus_dev_password` |
-| Adminer (Postgres UI) | http://localhost:8080 | Server: `postgres`, user/pass as above |
+| Service                 | URL                   | Credentials                                   |
+| ----------------------- | --------------------- | --------------------------------------------- |
+| **Kong API Gateway**    | http://localhost:8000 | —                                             |
+| Kong Admin API          | http://localhost:8100 | —                                             |
+| Auth API (direct)       | http://localhost:4001 | —                                             |
+| Catalog API (direct)    | http://localhost:4002 | —                                             |
+| Postgres                | `localhost:5432`      | `nexus` / `nexus_dev_password`                |
+| Redis                   | `localhost:6379`      | password: `nexus_dev_password`                |
+| Adminer (Postgres UI)   | http://localhost:8080 | Server: `postgres`, user/pass as above        |
 | RedisInsight (Redis UI) | http://localhost:8001 | Host: `redis`, password: `nexus_dev_password` |
-| Grafana | http://localhost:3000 | `admin` / `admin` |
-| Prometheus | http://localhost:9090 | — |
-| Tempo | http://localhost:3200 | — |
+| Grafana                 | http://localhost:3000 | `admin` / `admin`                             |
+| Prometheus              | http://localhost:9090 | —                                             |
+| Tempo                   | http://localhost:3200 | —                                             |
 
 All client traffic should go through the gateway on port 8000. The direct
 service ports (4001, 4002) are kept open for local debugging only.
@@ -50,17 +50,17 @@ docker compose -f docker-compose.yml -f docker-compose.observability.yml logs -f
 
 All endpoints are exposed through Kong on port 8000.
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/health` | Liveness probe (routed to auth) |
-| `POST` | `/api/v1/auth/register` | Create a new user, returns a JWT |
-| `POST` | `/api/v1/auth/login` | Authenticate, returns a JWT |
-| `GET` | `/api/v1/products` | List products (supports `?status=`, `?category=`, `?limit=`, `?offset=`) |
-| `GET` | `/api/v1/products/:slug` | Fetch a product by slug |
-| `POST` | `/api/v1/products` | Create a product |
-| `GET` | `/api/v1/categories` | List categories with product counts |
-| `GET` | `/api/v1/categories/:slug` | Fetch a category by slug |
-| `POST` | `/api/v1/categories` | Create a category |
+| Method | Path                       | Description                                                              |
+| ------ | -------------------------- | ------------------------------------------------------------------------ |
+| `GET`  | `/health`                  | Liveness probe (routed to auth)                                          |
+| `POST` | `/api/v1/auth/register`    | Create a new user, returns a JWT                                         |
+| `POST` | `/api/v1/auth/login`       | Authenticate, returns a JWT                                              |
+| `GET`  | `/api/v1/products`         | List products (supports `?status=`, `?category=`, `?limit=`, `?offset=`) |
+| `GET`  | `/api/v1/products/:slug`   | Fetch a product by slug                                                  |
+| `POST` | `/api/v1/products`         | Create a product                                                         |
+| `GET`  | `/api/v1/categories`       | List categories with product counts                                      |
+| `GET`  | `/api/v1/categories/:slug` | Fetch a category by slug                                                 |
+| `POST` | `/api/v1/categories`       | Create a category                                                        |
 
 ### Register
 
@@ -135,19 +135,19 @@ Each bounded context is its own service with its own database. All external
 traffic flows through Kong. See [`docs/adr/`](./docs/adr/) for the reasoning
 behind major decisions.
 
-| Service | Responsibility | Status |
-|---|---|---|
-| `gateway` | API gateway, routing, rate limiting | ✅ Implemented |
-| `auth` | Identity, JWT issuance, user registration | ✅ Implemented |
-| `catalog` | Products, categories | ✅ Implemented |
-| `cart` | Shopping cart state | 🚧 Planned |
-| `orders` | Order lifecycle, saga orchestration | 🚧 Planned |
-| `payments` | Stripe integration, refunds | 🚧 Planned |
-| `inventory` | Stock levels, reservations | 🚧 Planned |
-| `notifications` | Email, in-app messaging | 🚧 Planned |
-| `analytics` | Event ingestion, reporting | 🚧 Planned |
-| `web` | Customer storefront (Next.js) | 🚧 Planned |
-| `admin` | Admin panel (Next.js) | 🚧 Planned |
+| Service         | Responsibility                            | Status         |
+| --------------- | ----------------------------------------- | -------------- |
+| `gateway`       | API gateway, routing, rate limiting       | ✅ Implemented |
+| `auth`          | Identity, JWT issuance, user registration | ✅ Implemented |
+| `catalog`       | Products, categories                      | ✅ Implemented |
+| `cart`          | Shopping cart state                       | 🚧 Planned     |
+| `orders`        | Order lifecycle, saga orchestration       | 🚧 Planned     |
+| `payments`      | Stripe integration, refunds               | 🚧 Planned     |
+| `inventory`     | Stock levels, reservations                | 🚧 Planned     |
+| `notifications` | Email, in-app messaging                   | 🚧 Planned     |
+| `analytics`     | Event ingestion, reporting                | 🚧 Planned     |
+| `web`           | Customer storefront (Next.js)             | 🚧 Planned     |
+| `admin`         | Admin panel (Next.js)                     | 🚧 Planned     |
 
 ## 📜 License
 
