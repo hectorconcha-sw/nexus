@@ -126,6 +126,25 @@ services:
       timeout: 5s
       retries: 5
       start_period: 20s
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: nexus-web
+    restart: unless-stopped
+    environment:
+      # Inside Docker, the web app reaches Kong via the service name 'kong'
+      API_URL: http://kong:8000/api/v1
+      NODE_ENV: production
+    ports:
+      - '${WEB_PORT:-3000}:3000'
+    depends_on:
+      kong:
+        condition: service_healthy
+    networks:
+      - nexus
+
   adminer:
     image: adminer:4-standalone
     container_name: nexus-adminer

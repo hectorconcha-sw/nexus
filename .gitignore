@@ -101,3 +101,7 @@ docker-compose.override.yml
 
 # Generated Prisma client
 services/*/src/generated/
+
+# Next.js
+.next/
+out/
