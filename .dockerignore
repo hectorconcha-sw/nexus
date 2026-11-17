@@ -40,3 +40,8 @@ docker-compose.override.yml
 **/*.log
 **/npm-debug.log*
 **/pnpm-debug.log*
+
+**/node_modules
+**/.next
+**/dist
+**/.git

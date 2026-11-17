@@ -12,6 +12,7 @@ export default tseslint.config(
       '**/.next/**',
       '**/.turbo/**',
       '**/pnpm-lock.yaml',
+      '**/next-env.d.ts',
     ],
   },
   js.configs.recommended,
