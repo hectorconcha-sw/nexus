@@ -44,7 +44,19 @@ services:
           - POST
           - PATCH
           - DELETE
-
+  - name: cart
+    url: http://cart:4003
+    protocol: http
+    routes:
+      - name: cart-api
+        paths:
+          - /api/v1/cart
+        strip_path: false
+        methods:
+          - GET
+          - POST
+          - DELETE
+          - PATCH
 # ─────────────────────────────────────────────────────────────
 # Plugins (global)
 # ─────────────────────────────────────────────────────────────
