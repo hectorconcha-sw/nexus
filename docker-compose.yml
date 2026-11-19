@@ -90,6 +90,25 @@ services:
         condition: service_healthy
     networks:
       - nexus
+  cart:
+    build:
+      context: .
+      dockerfile: services/cart/Dockerfile
+    container_name: nexus-cart
+    restart: unless-stopped
+    environment:
+      REDIS_URL: redis://:nexus_dev_password@redis:6379
+      PORT: 4003
+      NODE_ENV: production
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_SERVICE_NAME: nexus-cart
+    ports:
+      - '${CART_PORT:-4003}:4003'
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - nexus
 
   kong:
     image: kong:3.8
