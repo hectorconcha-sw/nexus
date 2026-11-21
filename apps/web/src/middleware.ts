@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { config as appConfig } from '@/lib/config';
 import type { NextRequest } from 'next/server';
 
 // Helper to decode JWT and check expiration (uses atob for Edge compatibility)
@@ -33,8 +34,7 @@ export async function middleware(request: NextRequest) {
   // 2. If no Access Token (or it's expired), use Refresh Token to get a new one.
   if (refreshToken) {
     try {
-      const apiUrl = process.env.API_URL || 'http://localhost:8000/api/v1';
-      const res = await fetch(`${apiUrl}/auth/refresh`, {
+      const res = await fetch(`${appConfig.apiUrl}/auth/refresh`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ refreshToken }),

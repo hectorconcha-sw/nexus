@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { AddToCartButton } from './AddToCartButton';
+import { config } from '@/lib/config';
 
 async function getProduct(slug: string) {
-  const apiUrl = process.env.API_URL || 'http://localhost:8000/api/v1';
   try {
-    const res = await fetch(`${apiUrl}/products/${slug}`, {
+    const res = await fetch(`${config.apiUrl}/products/${slug}`, {
       next: { revalidate: 60 },
     });
     if (!res.ok) return null;
@@ -55,9 +56,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <span className="ml-4 text-sm text-zinc-500">SKU: {product.sku}</span>
           </div>
 
-          <button className="bg-blue-600 text-white py-3 px-8 rounded-lg font-semibold hover:bg-blue-700 transition-colors w-full md:w-auto">
-            Add to Cart
-          </button>
+          <AddToCartButton product={product} />
         </div>
       </div>
     </div>
