@@ -1,7 +1,6 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
-
-const API_URL = process.env.API_URL || 'http://localhost:8000/api/v1';
+import { config } from './config';
 
 export async function proxyAuthRequest(
   endpoint: string,
@@ -10,7 +9,7 @@ export async function proxyAuthRequest(
   clearCookie: boolean = false,
 ) {
   try {
-    const res = await fetch(`${API_URL}/auth/${endpoint}`, {
+    const res = await fetch(`${config.apiUrl}/auth/${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),

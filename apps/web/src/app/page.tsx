@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { config } from '@/lib/config';
 
 interface Product {
   id: string;
@@ -11,10 +12,9 @@ interface Product {
 async function getProducts() {
   // We use localhost:8000 here because Next.js is running on your host machine during dev.
   // In Docker, this will be the Kong container name.
-  const apiUrl = process.env.API_URL || 'http://localhost:8000/api/v1';
 
   try {
-    const res = await fetch(`${apiUrl}/products`, {
+    const res = await fetch(`${config.apiUrl}/products`, {
       next: { revalidate: 60 }, // Cache for 60 seconds
     });
 
