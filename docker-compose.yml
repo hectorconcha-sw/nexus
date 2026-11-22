@@ -110,6 +110,25 @@ services:
     networks:
       - nexus
 
+  inventory:
+    build:
+      context: .
+      dockerfile: services/inventory/Dockerfile
+    container_name: nexus-inventory
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://inventory_service:inventory_dev_password@postgres:5432/nexus_inventory
+      PORT: 4004
+      NODE_ENV: production
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_SERVICE_NAME: nexus-inventory
+    ports:
+      - '${INVENTORY_PORT:-4004}:4004'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - nexus
   kong:
     image: kong:3.8
     container_name: nexus-kong

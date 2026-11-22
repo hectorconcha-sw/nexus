@@ -57,6 +57,17 @@ services:
           - POST
           - DELETE
           - PATCH
+  - name: inventory
+    url: http://inventory:4004
+    protocol: http
+    routes:
+      - name: inventory-api
+        paths:
+          - /api/v1/inventory
+        strip_path: false
+        methods:
+          - GET
+          - POST
 # ─────────────────────────────────────────────────────────────
 # Plugins (global)
 # ─────────────────────────────────────────────────────────────
