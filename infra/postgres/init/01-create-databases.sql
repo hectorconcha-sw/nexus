@@ -50,3 +50,6 @@ REVOKE CONNECT ON DATABASE nexus_auth_shadow FROM PUBLIC;
 
 CREATE DATABASE nexus_catalog_shadow OWNER catalog_service;
 REVOKE CONNECT ON DATABASE nexus_catalog_shadow FROM PUBLIC;
+
+CREATE DATABASE nexus_inventory_shadow OWNER inventory_service;
+REVOKE CONNECT ON DATABASE nexus_inventory_shadow FROM PUBLIC;
